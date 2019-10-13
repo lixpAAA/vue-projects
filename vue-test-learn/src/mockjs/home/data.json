@@ -1,0 +1,19 @@
+{
+    "code": 1,
+    "data": {
+        "list": [
+            {
+                "link": "11",
+                "src": "http://img.alicdn.com/tfs/TB1uwi_hQT2gK0jSZPcXXcKkpXa-520-280.jpg_q90_.webp"
+            },
+            {
+                "link": "22",
+                "src": "https://aecpm.alicdn.com/simba/img/TB1XotJXQfb_uJkSnhJSuvdDVXa.jpg"
+            },
+            {
+                "link": "33",
+                "src": "https://aecpm.alicdn.com/simba/img/TB1XotJXQfb_uJkSnhJSuvdDVXa.jpg"
+            }
+        ]
+    }
+}
