@@ -7,19 +7,17 @@
       2. 可以设置active-class=‘’来设置样式
       3. 也可以在全局router配置时，配置linkActiveClass
     -->
-    <router-link :to="{path: '/test/' + param}" tag="button">测试页面</router-link>
-    <router-link :to="{path: '/helloword' }" tag="button">首页</router-link>
+    <!-- <router-link :to="{path: '/test/' + param}" tag="button">测试页面</router-link>
+    <router-link :to="{path: '/helloword' }" tag="button">首页</router-link> -->
     <keep-alive>
       <router-view />
     </keep-alive>
     <my-tabbar :tabbar-iitems="tabbarItems"></my-tabbar>
-    <h1>testObj</h1>
-    <h2>{{testObj}}</h2>
   </div>
 </template>
 
 <script>
-import MyTabbar from './components/myComponents/myTabbar/myTabbarPlus/MyTabbar';
+import MyTabbar from 'components/myComponents/common/myTabbarPlus/MyTabbar';
 import Vue from 'vue';
 import { resolve } from 'q';
 export default {
@@ -73,7 +71,6 @@ export default {
 </script>
 
 <style scoped>
-@import './assets/css/main.css';
 a {
   text-decoration: none;
 }
@@ -84,6 +81,6 @@ a {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  /* margin-top: 60px; */
 }
 </style>

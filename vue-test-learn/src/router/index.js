@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 // import Router from '../js/myVueRouter'
 import HelloWorld from '@/components/HelloWorld'
+import Home from '@/views/home'
 
 Vue.use(Router)
 const route = new Router({
@@ -10,7 +11,15 @@ const route = new Router({
   routes: [
     {
       path: '/',
-      redirect: '/helloword'
+      redirect: '/home'
+    },
+    {
+      path: '/home',
+      name: 'home',
+      component: Home,
+      meta: {
+        title: '首页'
+      }
     },
     {
       path: '/helloword',

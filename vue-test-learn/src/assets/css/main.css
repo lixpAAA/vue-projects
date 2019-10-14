@@ -1,5 +1,6 @@
 body {
   padding: 0px;
   margin: 0px;
-  background-color: rgb(17, 32, 32)
+  /* background-color: rgb(17, 32, 32) */
+  --them-color:  #1296db;
 }

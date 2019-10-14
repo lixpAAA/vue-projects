@@ -2,6 +2,7 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
+    <router-link to="test/13">test</router-link>
   </div>
 </template>
 
@@ -14,13 +15,13 @@ export default {
     };
   },
   created() {
-    console.log('this:', this.test());
-    this.$http.http('/get').then((res) => {
-      console.log('默认方式res:', res);
-    });
-    this.$http.http({ url: '/post', method: 'post' }).then((res) => {
-      console.log('默认方式post:', res);
-    });
+    // console.log('this:', this.test());
+    // this.$http.http('/get').then((res) => {
+    //   console.log('默认方式res:', res);
+    // });
+    // this.$http.http({ url: '/post', method: 'post' }).then((res) => {
+    //   console.log('默认方式post:', res);
+    // });
   }
 };
 </script>

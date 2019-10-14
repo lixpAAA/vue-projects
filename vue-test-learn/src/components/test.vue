@@ -24,7 +24,7 @@ export default {
   }
 };
 </script>
-<style lang="less" scoped type="text/less">
+<style scoped>
 .wrapper {
 }
 </style>

@@ -30,14 +30,14 @@ export default new vuex.Store({
   actions: {
     aModifyName(context) {
       return new Promise((resolve, reject) => {
-        if (false) {
+        if (true) {
           resolve('异步操作lxp')
         } else {
           reject('异常')
         }
-      }).then(res => {
+      }).then((res) => {
         context.commit('modifyName', res)
-        Promise.resolve('成功')
+        return Promise.resolve('成功')
       })
     }
   },

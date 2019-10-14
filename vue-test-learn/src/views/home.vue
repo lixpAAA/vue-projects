@@ -1,0 +1,69 @@
+<template>
+    <div>
+        <nav-bar class='nav-bar-bg'>
+            <div class="nav-bar-title" slot="center">购物街</div>
+        </nav-bar>
+        <!-- <swiper :img-data='imgdata'/> -->
+        <el-carousel :interval="4000" height="200px" indicator-position='none'>
+          <el-carousel-item v-for="item in imgdata" :key="item.link">
+             <a :href="item.link">
+                   <img :src="item.src" alt="" class="img-style">
+            </a>
+         </el-carousel-item>
+       </el-carousel>
+      <new-production>
+          <production-item :data='imgdata'></production-item>
+      </new-production>
+    </div>
+</template>
+
+<script>
+import http from 'network/home/index'
+import navBar from 'components/myComponents/content/navbar/navbar'
+import Swiper from 'components/myComponents/common/swiper/swiper'
+// import { ElCarousel, ElCarouselItem} from 'element-ui'
+
+import NewProduction from 'components/myComponents/content/newProduction/NewProduction'
+import ProductionItem from 'components/myComponents/content/newProduction/ProductionItem'
+export default {
+   name: 'home',
+   components: {
+       navBar,
+       Swiper,
+       NewProduction,
+       ProductionItem
+   },
+   data() {
+       return {
+           imgdata: [{link: '', src: ''}]
+       }
+   },
+   created() {
+      this.getMoreImg()
+   },
+   methods: {
+    getMoreImg() {
+      http.getMoreImg().then(res=> {
+          if(res.data.code===1) {
+              this.imgdata = res.data.data.list
+          }
+      }).catch(err=> {
+          console.log(err)
+      })
+       }
+   }
+}
+</script>
+   
+<style scoped>
+  .nav-bar-bg {
+      background: var(--them-color);
+  }
+  .nav-bar-title {
+      
+  }
+  .img-style {
+      /* /* height: 200px; */
+      width: 100%;
+  }
+</style>

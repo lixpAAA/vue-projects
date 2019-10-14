@@ -18,9 +18,6 @@ export default {
     hc: Hcomponent
   },
   created() {
-    console.log('testC-1:', this.$route.params.name);
-    console.log('options:', this.$options);
-    console.log('$Store:', this.$store);
     this.$store
       .dispatch('aModifyName')
       .then((re) => {
@@ -30,7 +27,9 @@ export default {
         console.log('已修改', err);
       });
   },
-  mounted() {},
+  mounted() {
+  
+  },
   data() {
     return {};
   },
@@ -47,7 +46,7 @@ export default {
   }
 };
 </script>
-<style lang="less" scoped>
+<style scoped>
 .wrapper {
 }
 </style>
