@@ -7,13 +7,20 @@
 </template>
 
 <script>
+import Vue from 'vue';
+const vm = new Vue();
+
 export default {
   name: 'Test',
   components: {},
   created() {
     console.log('routerParam:', this.$route.params.param);
   },
-  mounted() {},
+  mounted() {
+    vm.$on('change', (data) => {
+      console.log('通过vue.$emit()获取的事件消息：', data);
+    });
+  },
   data() {
     return {};
   },
