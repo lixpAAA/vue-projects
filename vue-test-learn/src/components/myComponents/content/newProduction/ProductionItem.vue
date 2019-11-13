@@ -1,35 +1,36 @@
 <template>
   <div class="outer">
-     <div class="img-container" v-for="item in data" :key="item">
-        <a :href="item.link">
-           <img :src="item.src" alt="" class="img-style">
-        </a>
-     </div>
+    <div class="img-container" v-for="item in data" :key="item.src">
+      <a :href="item.link">
+        <img :src="item.src" alt class="img-style" />
+      </a>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-   name: 'product-item',
-   props: {
-     data: {
-       type: Array,
-       default: ()=> {
-         return []
-       }
-     }
-   },
-   data() {
-   }
-}
+  name: 'product-item',
+  props: {
+    data: {
+      type: Array,
+      default: () => {
+        return [];
+      }
+    }
+  },
+  data() {
+    return {};
+  }
+};
 </script>
 
 <style scoped>
 .outer {
-  display: flex; 
+  display: flex;
 }
 .img-container {
-  flex: 1
+  flex: 1;
 }
 .img-style {
   width: 48px;

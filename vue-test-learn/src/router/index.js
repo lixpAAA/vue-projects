@@ -2,7 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 // import Router from '../js/myVueRouter'
 import HelloWorld from '@/components/HelloWorld'
-import Home from './home/index'
+// import Home from './home/index'
+import { getRouteList as Utils } from '../utils/comon'
+const routes = Utils()
+
 
 Vue.use(Router)
 const route = new Router({
@@ -13,7 +16,8 @@ const route = new Router({
       path: '/',
       redirect: '/home'
     },
-    { ...Home },
+    ...routes,
+    // { ...Home },
     {
       path: '/helloword',
       name: 'HelloWorld',

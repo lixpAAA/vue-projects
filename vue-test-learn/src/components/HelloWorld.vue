@@ -13,6 +13,8 @@ import Vue from 'vue';
 const vm = new Vue();
 
 import testChild from './myComponents/testComponents/testChild';
+
+import { getRouteList as routerUtil } from '../utils/comon';
 export default {
   name: 'HelloWorld',
   components: {
@@ -32,7 +34,7 @@ export default {
   },
   created() {
     vm.$emit('change', 123); /// 全局发出事件消息
-
+    routerUtil();
     // console.log('this:', this.test());
     // this.$http.http('/get').then((res) => {
     //   console.log('默认方式res:', res);
