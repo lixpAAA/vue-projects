@@ -1,3 +1,4 @@
 export default {
-    moreImg: '/more/img'
+    moreImg: '/more/img',
+    testAPI: '/test/get'
 }

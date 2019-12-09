@@ -17,8 +17,8 @@ export default {
         { label: '平台名称', porp: 'platForm' },
         { label: '版本', porp: 'version' },
         { label: '菜单', porp: 'view' },
-        { label: '子菜单', porp: 'sonView' }
-        //   { label: '菜单点击次数', porp: 'clickNumber' },
+        { label: '子菜单', porp: 'sonView' },
+        { label: '菜单点击次数', porp: 'clickNumber' }
         //   { label: '菜单点击人数', porp: 'clickPopleNumber' },
         //   { label: '人均点击次数', porp: 'clickFlatNumber' }
       ],
@@ -94,6 +94,15 @@ export default {
           clickNumber: '1',
           clickPopleNumber: '2',
           clickFlatNumber: '3'
+        },
+        {
+          platForm: '',
+          version: '',
+          view: '更多',
+          sonView: '个人中心',
+          clickNumber: '1',
+          clickPopleNumber: '2',
+          clickFlatNumber: '3'
         }
       ]
     }
@@ -105,58 +114,38 @@ export default {
   mounted() {},
   methods: {
     objectSpanMethod({ row, column, rowIndex, columnIndex }) {
-      // console.log(row)
-      // console.log(column)
-      console.log('行', rowIndex, '列', columnIndex)
-      // console.log('column', column)
-      console.log('row', row)
-
-      // if (rowIndex % 8 === 0) {
-      //   if (columnIndex === 0 || columnIndex === 1) {
-      //     return {
-      //       rowspan: 8,
-      //       colspan: 0
-      //     }
-      //   }
-      // }
-      if (columnIndex === 0) {
+      if (columnIndex === 0 || columnIndex === 1) {
         if (rowIndex % 8 === 0) {
+          return {
+            rowspan: 8,
+            colspan: 1
+          }
+        } else {
           return {
             rowspan: 0,
             colspan: 0
           }
         }
-        //    else {
-        //     return {
-        //       rowspan: 8,
-        //       colspan: 0
-        //     }
-        //   }
+      } else if (columnIndex === 2) {
+        if ((rowIndex % 8) % 3 === 0 && rowIndex % 8 < 6) {
+          console.log(rowIndex, '     1')
+          return {
+            rowspan: 3,
+            colspan: 1
+          }
+        } else if (rowIndex % 8 === 6) {
+          console.log(rowIndex, '     2')
+          return {
+            rowspan: 2,
+            colspan: 1
+          }
+        } else {
+          return {
+            rowspan: 0,
+            colspan: 0
+          }
+        }
       }
-      //  else if (columnIndex === 2) {
-      //   if (rowIndex % 3 === 0 && rowIndex < 6) {
-      //     return {
-      //       rowspan: 3,
-      //       colspan: 1
-      //     }
-      //   } else if (rowIndex % 2 === 0) {
-      //     return {
-      //       rowspan: 2,
-      //       colspan: 1
-      //     }
-      //   } else {
-      //     return {
-      //       rowspan: 0,
-      //       colspan: 0
-      //     }
-      //   }
-      // }
-      // else {
-      //   return {
-      //     rowspan: 0,
-      //     colspan: 0
-      //   }
-      // }
     }
   }
 }
