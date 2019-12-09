@@ -5,7 +5,7 @@ import testPlugin from './plugins/test'
 import './style/main.css'
 import store from './store/store.js'
 // import axios from './axios'
-// require('./mockjs')
+require('./mockjs')
 import ElementUi from 'element-ui'
 
 import 'element-ui/lib/theme-chalk/index.css';

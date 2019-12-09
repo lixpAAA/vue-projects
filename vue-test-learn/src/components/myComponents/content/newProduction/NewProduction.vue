@@ -13,6 +13,8 @@ export default {
 <style scoped>
 .outer {
   width: 100%;
-  padding: 0 10px;
+  /* padding: 0 10px; */
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 </style>

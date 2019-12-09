@@ -18,15 +18,15 @@
 </template>
 
 <script>
-import http from 'network/home/index'
-import navBar from 'components/myComponents/content/navbar/navbar'
-import Swiper from 'components/myComponents/common/swiper/swiper'
+import http from "network/home/index";
+import navBar from "components/myComponents/content/navbar/navbar";
+import Swiper from "components/myComponents/common/swiper/swiper";
 // import { ElCarousel, ElCarouselItem} from 'element-ui'
 
-import NewProduction from 'components/myComponents/content/newProduction/NewProduction'
-import ProductionItem from 'components/myComponents/content/newProduction/ProductionItem'
+import NewProduction from "components/myComponents/content/newProduction/NewProduction";
+import ProductionItem from "components/myComponents/content/newProduction/ProductionItem";
 export default {
-  name: 'home',
+  name: "home",
   components: {
     navBar,
     Swiper,
@@ -35,31 +35,31 @@ export default {
   },
   data() {
     return {
-      imgdata: [{ link: '', src: '' }]
-    }
+      imgdata: [{ link: "", src: "" }]
+    };
   },
   created() {
-    // this.getMoreImg()
-    // http.test().then((res) => {})
-    http.testGet().then((res) => {
-      console.log(res)
-    })
+    this.getMoreImg();
+    http.test().then(res => {});
+    http.testGet().then(res => {
+      console.log(res);
+    });
   },
   methods: {
-    // getMoreImg() {
-    //   http
-    //     .getMoreImg()
-    //     .then((res) => {
-    //       if (res.data.code === 1) {
-    //         this.imgdata = res.data.data.list
-    //       }
-    //     })
-    //     .catch((err) => {
-    //       console.log(err)
-    //     })
-    // }
+    getMoreImg() {
+      http
+        .getMoreImg()
+        .then(res => {
+          if (res.data.code === 1) {
+            this.imgdata = res.data.data.list;
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   }
-}
+};
 </script>
    
 <style scoped>
