@@ -63,8 +63,16 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         from: path.resolve(__dirname, '../static'),
         to: config.dev.assetsSubDirectory,
         ignore: ['.*']
+      },
+      {
+        from: path.resolve(__dirname, '../dll'),
+        to: 'dll',
+        ignore: ['.*']
       }
-    ])
+    ]),
+    new webpack.DllReferencePlugin({
+      manifest: require('../dll/vendor-manifest.json')
+    })
   ]
 })
 
@@ -85,8 +93,8 @@ module.exports = new Promise((resolve, reject) => {
           messages: [`Your application is running here: http://${devWebpackConfig.devServer.host}:${port}`],
         },
         onErrors: config.dev.notifyOnErrors
-        ? utils.createNotifierCallback()
-        : undefined
+          ? utils.createNotifierCallback()
+          : undefined
       }))
 
       resolve(devWebpackConfig)
