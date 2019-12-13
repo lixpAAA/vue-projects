@@ -1,1 +1,1 @@
-{"name":"vendor_library","content":{"./node_modules/_loadsh@0.0.4@loadsh/lodash.js":{"id":1,"meta":{}},"./node_modules/webpack/buildin/global.js":{"id":2,"meta":{}},"./node_modules/webpack/buildin/module.js":{"id":3,"meta":{}}}}
+{"name":"vendor_library","content":{"./node_modules/loadsh/lodash.js":{"id":1,"meta":{}},"./node_modules/webpack/buildin/global.js":{"id":2,"meta":{}},"./node_modules/webpack/buildin/module.js":{"id":3,"meta":{}}}}
