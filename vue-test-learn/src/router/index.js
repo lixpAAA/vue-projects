@@ -12,10 +12,10 @@ const route = new Router({
   // mode: 'history',
   // linkActiveClass: 'active',
   routes: [
-    {
-      path: '/',
-      redirect: '/home'
-    },
+    // {
+    //   // path: '/',
+    //   // redirect: '/home'
+    // },
     ...routes,
     // { ...Home },
     {
