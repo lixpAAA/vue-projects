@@ -4,7 +4,7 @@ import router from './router'
 import testPlugin from './plugins/test'
 import './style/main.css'
 import store from './store/store.js'
-import loadsh from 'loadsh';
+import $ from 'jquery';
 // import axios from './axios'
 require('./mockjs')
 // import ElementUi from 'element-ui'
@@ -13,10 +13,17 @@ import Element from '../element/index'
 // console.log(Element.install)
 
 import 'element-ui/lib/theme-chalk/index.css';
+<<<<<<< Updated upstream
 console.log(loadsh)
 // console.log(ElementUi)
 // Vue.use(ElementUi)
 Vue.use(Element)
+=======
+
+
+Vue.use(ElementUi)
+// Vue.use(Element)
+>>>>>>> Stashed changes
 Vue.use(testPlugin)
 // Vue.use(axios)
 Vue.config.productionTip = false

@@ -117,7 +117,7 @@ const webpackConfig = merge(baseWebpackConfig, {
         ignore: ['.*']
       }
     ]),
-    //   dll预处理，第三方包loadsh
+    // dll预处理，第三方包loadsh
     new webpack.DllReferencePlugin({
       manifest: require('../dll/vendor-manifest.json')
     })
