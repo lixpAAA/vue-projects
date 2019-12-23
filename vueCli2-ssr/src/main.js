@@ -22,5 +22,5 @@ export function createApp() {
     router,
     render: h => h(App)
   })
-  return { app, createRouter }
+  return { app, router }
 }

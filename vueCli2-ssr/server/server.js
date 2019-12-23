@@ -14,7 +14,7 @@ const renderer = createBundleRenderer(serverBundle, {
 
 
 console.log('path:', path.resolve(__dirname, '../dist/client'))
-server.use(express.static(path.resolve(__dirname, '../dist/client')))
+server.use(express.static(path.resolve(__dirname, '../dist')))
 server.get('*', (req, res) => {
   console.log("url:", req.url)
   const context = { url: req.url }
@@ -22,7 +22,7 @@ server.get('*', (req, res) => {
   let buffers = []
   ssrStream.on('error', err => { console.log(err) })
   ssrStream.on('data', data => {
-    console.log('buffers:', buffers)
+    // console.log('buffers:', buffers)
     buffers.push(data)
   })
   ssrStream.on('end', () => { res.end(Buffer.concat(buffers)) })

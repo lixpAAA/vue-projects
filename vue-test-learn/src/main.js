@@ -13,17 +13,10 @@ import Element from '../element/index'
 // console.log(Element.install)
 
 import 'element-ui/lib/theme-chalk/index.css';
-<<<<<<< Updated upstream
-console.log(loadsh)
-// console.log(ElementUi)
+
+
 // Vue.use(ElementUi)
 Vue.use(Element)
-=======
-
-
-Vue.use(ElementUi)
-// Vue.use(Element)
->>>>>>> Stashed changes
 Vue.use(testPlugin)
 // Vue.use(axios)
 Vue.config.productionTip = false

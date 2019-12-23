@@ -9,7 +9,7 @@ const routes = Utils()
 
 Vue.use(Router)
 const route = new Router({
-  // mode: 'history',
+  mode: 'history',
   // linkActiveClass: 'active',
   routes: [
     // {
