@@ -5,7 +5,7 @@
 //   { parentId: 3, node: 'D', name: 'D', id: 4 },
 //   { parentId: 4, node: 'E', name: 'E', id: 5 },
 // ]
-
+/***** 数组转为具有树形结构 ***********************************/
 function createMap(arr) {
   let map = {}
   arr.forEach(item => {
@@ -28,3 +28,38 @@ function toTree(arr) {
   })
   return res
 }
+
+/***** 对象拷贝 ***********************************/
+function deepClone(data) {
+  let type = chekType(data)
+  let res
+  switch (type) {
+    case 'Array':
+      res = []
+      for (let i = 0;i < data.length;++i) {
+        res[i] = deepClone(data[i])
+      }
+      return res
+    case 'Object':
+      res = {}
+      for (let key in data) {
+        res[key] = deepClone(data[key])
+      }
+      return res
+    default:
+      return data
+  }
+}
+
+
+function chekType(item) {
+  let str = toString.call(item)
+  if (str === '[object Array]') {
+    return 'Array'
+  } else if (str === '[object Object]') {
+    return 'Object'
+  } else {
+    return true
+  }
+}
+/*****  ***********************************/
