@@ -10,10 +10,11 @@ export default {
     },
     test() {
         return request({
-            url: '/AAA/post',
+            url: '/test/post',
             method: 'post',
             headers: {
-                contentType: 'UTF-8'
+                contentType: 'UTF-8',
+                'If-None-Match': 121454454
             }
         })
     },

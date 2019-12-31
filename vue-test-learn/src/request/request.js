@@ -16,6 +16,7 @@ export function request(config) {
     })
     //  响应拦截
     instance.interceptors.response.use(res => {
+        console.log(res.headers.etag)
         return res
     }, err => {
         return Promise.reject(err)
