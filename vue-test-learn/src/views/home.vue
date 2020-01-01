@@ -15,6 +15,10 @@
       <production-item :data="imgdata"></production-item>
     </new-production>
     <button v-btn-click="getData" @click="test">kkkkkk</button>
+    <div v-html="html" v-text="html"></div>
+    <div v-bind:classList.prop="html1"></div>
+    <div :v-hh.camel="html1"></div>
+    <input type="text" v-model.trim="html" />
   </div>
 </template>
 
@@ -38,12 +42,17 @@ export default {
   data() {
     return {
       imgdata: [{ link: "", src: "" }],
-      bbb: "dsdsdsd"
+      bbb: "dsdsdsd",
+      html: "",
+      html1: ["red"]
     };
   },
   created() {
     // console.log(ElCarousel)
+    let _this = this;
     console.log("$:" + $);
+    let vv = `function test(){console.log(111);}`;
+    this.html = `<h2 style='color: red' onclick='function test(){console.log(111);}test();'>this is h2</h2>}`;
     this.getMoreImg();
     http.test().then(res => {});
     http.testGet().then(res => {
@@ -73,6 +82,15 @@ export default {
           resolve(true);
         });
       });
+    }
+  },
+  watch: {
+    html: {
+      handler: function(newV, old) {
+        newV = newV.replace(/\s+/g, "");
+        console.log(newV);
+      },
+      immedite: true
     }
   }
 };

@@ -10,12 +10,13 @@ export default {
     },
     test() {
         return request({
-            url: '/test/post',
+            url: '/AAA/post1',
             method: 'post',
             headers: {
-                contentType: 'UTF-8',
-                'If-None-Match': 121454454
-            }
+                contentType: 'application/json'
+            },
+            data: JSON.stringify({ data: 123 }),
+            params: { aa: 122 }
         })
     },
     testGet() {

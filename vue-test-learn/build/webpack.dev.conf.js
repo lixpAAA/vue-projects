@@ -70,9 +70,9 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         ignore: ['.*']
       }
     ]),
-    new webpack.DllReferencePlugin({
-      manifest: require('../dll/vendor-manifest.json')
-    })
+    // new webpack.DllReferencePlugin({
+    //   manifest: require('../dll/vendor-manifest.json')
+    // })
   ]
 })
 
