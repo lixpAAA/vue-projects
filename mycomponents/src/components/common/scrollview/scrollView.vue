@@ -1,5 +1,6 @@
 <template>
   <div class="wrapper">
+    <slot name="header" :data="testdata"></slot>
     <ul id="liContainer">
       <li v-for="item in list" :key="item.id" :id="item.id">{{item.value}}</li>
     </ul>
@@ -12,6 +13,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
   components: {}
 })
 export default class SrollView extends Vue {
+  testdata: string = 'lixp'
   observer: any = null
   list: Array<any> = [] // 数据源
   firstItemDom: any // 第一个dom节点

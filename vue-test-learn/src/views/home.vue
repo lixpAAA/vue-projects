@@ -23,16 +23,16 @@
 </template>
 
 <script>
-import http from "network/home/index";
-import navBar from "components/myComponents/content/navbar/navbar";
-import Swiper from "components/myComponents/common/swiper/swiper";
-const $ = require("jquery");
+import http from 'network/home/index'
+import navBar from 'components/myComponents/content/navbar/navbar'
+import Swiper from 'components/myComponents/common/swiper/swiper'
+const $ = require('jquery')
 
-import NewProduction from "components/myComponents/content/newProduction/NewProduction";
-import ProductionItem from "components/myComponents/content/newProduction/ProductionItem";
+import NewProduction from 'components/myComponents/content/newProduction/NewProduction'
+import ProductionItem from 'components/myComponents/content/newProduction/ProductionItem'
 // import { resolve, reject } from 'q'
 export default {
-  name: "home",
+  name: 'home',
   components: {
     navBar,
     Swiper,
@@ -41,6 +41,7 @@ export default {
   },
   data() {
     return {
+<<<<<<< Updated upstream
       imgdata: [{ link: "", src: "" }],
       bbb: "dsdsdsd",
       html: "",
@@ -58,30 +59,51 @@ export default {
     http.testGet().then(res => {
       console.log(res);
     });
+=======
+      imgdata: [{ link: '', src: '' }],
+      bbb: 'dsdsdsd'
+    }
+  },
+  created() {
+    // console.log(ElCarousel)
+    console.log('$:' + $)
+    // this.getMoreImg()
+    // http.test().then((res) => {})
+    // http.testGet().then((res) => {
+    //   console.log(res)
+    // })
+    this.test()
+>>>>>>> Stashed changes
   },
   methods: {
-    test() {
-      console.log(this.bbb);
+    async test() {
+      console.log(this.bbb)
+      console.log(Date.now())
+      const a = await this.getMoreImg()
+      console.log(Date.now())
+      const b = await this.getData()
+      console.log(Date.now())
+      console.log(a, b)
     },
     getMoreImg() {
       http
         .getMoreImg()
-        .then(res => {
+        .then((res) => {
           if (res.data.code === 1) {
-            this.imgdata = res.data.data.list;
+            this.imgdata = res.data.data.list
           }
         })
-        .catch(err => {
-          console.log(err);
-        });
+        .catch((err) => {
+          console.log(err)
+        })
     },
     getData() {
       return new Promise((resolve, reject) => {
-        http.testGet().then(res => {
-          console.log(res);
-          resolve(true);
-        });
-      });
+        http.testGet().then((res) => {
+          console.log(res)
+          resolve(true)
+        })
+      })
     }
   },
   watch: {
@@ -93,7 +115,7 @@ export default {
       immedite: true
     }
   }
-};
+}
 </script>
    
 <style scoped>
