@@ -1,9 +1,12 @@
 <template>
   <div class="hello">
     <h5>{{ msg }}</h5>
-    <srollView>
+    <component :is="srollView"></component>
+    <!-- <srollView>
       <h2 slot="header" slot-scope="data">滑动组件{{data.data}}</h2>
-    </srollView>
+    </srollView>-->
+    <h3>{{time|formatTime('mamm')}}</h3>
+    <inputV @input="getInputInfo" :messge.sync="msg" />
   </div>
 </template>
 
@@ -11,18 +14,42 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import srollView from '@/components/common/scrollview/scrollView.vue'
 import RegularPolygon from '@/components/common/regularPolygon/regularPolygon.vue'
+import inputV from '@/components/content/test.vue'
 @Component({
   components: {
     srollView,
-    RegularPolygon
+    RegularPolygon,
+    inputV
+  },
+  filters: {
+    formatTime(params: Date, type: string) {
+      console.log('type:', type)
+      let date = new Date(params)
+      let year = date.getFullYear()
+      let month = date.getMonth() + 1
+      let day = date.getDate()
+
+      return year + '-' + month + '-' + day
+    }
+  },
+  props: {
+    sss: {
+      type: String,
+      default: 'sssss'
+    }
   }
 })
 export default class HelloWorld extends Vue {
-  @Prop() private msg!: string // 定义组件的props:原本为props：{ msg: {type: String, defalt:''}}
+  msg: string = '' // 定义组件的props:原本为props：{ msg: {type: String, defalt:''}}
+  srollView: string = 'srollView'
+  time: Date = new Date()
   mounted() {
     console.log('user', this.$store.state.user)
   } //  其他生命周期函数该咋写咋写
   created() {}
+  getInputInfo(e: any) {
+    this.msg = e
+  }
 }
 </script>
 

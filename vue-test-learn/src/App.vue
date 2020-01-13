@@ -8,18 +8,18 @@
       3. 也可以在全局router配置时，配置linkActiveClass
     -->
     <!-- <router-link :to="{path: '/test/' + param}" tag="button">测试页面</router-link>
-    <router-link :to="{path: '/helloword' }" tag="button">首页</router-link> -->
+    <router-link :to="{path: '/helloword' }" tag="button">首页</router-link>-->
     <keep-alive>
       <router-view />
     </keep-alive>
-    <my-tabbar :tabbar-iitems="tabbarItems"></my-tabbar>
+    <my-tabbar :tabbar-iitems="tabbarItems" ref="app"></my-tabbar>
   </div>
 </template>
 
 <script>
-import MyTabbar from 'components/myComponents/common/myTabbarPlus/MyTabbar';
-import Vue from 'vue';
-import { resolve } from 'q';
+import MyTabbar from 'components/myComponents/common/myTabbarPlus/MyTabbar'
+import Vue from 'vue'
+import { resolve } from 'q'
 export default {
   name: 'App',
   components: {
@@ -57,17 +57,26 @@ export default {
       testObj: {
         name: 'lxp'
       }
-    };
+    }
   },
   created() {
+    this.testObj.addr = '四川'
     new Promise((resolve) => {
-      Vue.set(this.$options.data().testObj, 'age', 18);
-      resolve(true);
-    }).then((e) => console.log('test:', this.$options.data().testObj.age));
+      Vue.set(this.$options.data().testObj, 'age', 18)
+      resolve(true)
+    }).then((e) => console.log('test:', this.$options.data().testObj.age))
 
     // console.log('test:', this.$options.data().testObj);
+  },
+  mounted() {
+    console.log('addr:', this.testObj.addr)
+  },
+  provide() {
+    return {
+      name: 'lixp'
+    }
   }
-};
+}
 </script>
 
 <style scoped>

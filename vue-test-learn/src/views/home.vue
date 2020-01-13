@@ -18,7 +18,9 @@
     <div v-html="html" v-text="html"></div>
     <div v-bind:classList.prop="html1"></div>
     <div :v-hh.camel="html1"></div>
-    <input type="text" v-model.trim="html" />
+    <input type="text" v-model.trim="html" ref="ffff" />
+    <h3>{{testsss}}</h3>
+    <span>{{time | formatTime}}</span>
   </div>
 </template>
 
@@ -30,42 +32,49 @@ const $ = require('jquery')
 
 import NewProduction from 'components/myComponents/content/newProduction/NewProduction'
 import ProductionItem from 'components/myComponents/content/newProduction/ProductionItem'
+import { resolve, reject } from 'q'
 // import { resolve, reject } from 'q'
 export default {
   name: 'home',
+  inject: ['name'],
   components: {
     navBar,
     Swiper,
-    NewProduction,
+    'new-production': (resolve, reject) => {
+      setTimeout(() => resolve(NewProduction), 2000)
+    },
     ProductionItem
   },
   data() {
     return {
-<<<<<<< Updated upstream
-      imgdata: [{ link: "", src: "" }],
-      bbb: "dsdsdsd",
-      html: "",
-      html1: ["red"]
-    };
-  },
-  created() {
-    // console.log(ElCarousel)
-    let _this = this;
-    console.log("$:" + $);
-    let vv = `function test(){console.log(111);}`;
-    this.html = `<h2 style='color: red' onclick='function test(){console.log(111);}test();'>this is h2</h2>}`;
-    this.getMoreImg();
-    http.test().then(res => {});
-    http.testGet().then(res => {
-      console.log(res);
-    });
-=======
       imgdata: [{ link: '', src: '' }],
-      bbb: 'dsdsdsd'
+      bbb: [1, 23, 4, 5, 6],
+      html: '',
+      html1: ['red'],
+      time: new Date()
     }
   },
-  created() {
+  mounted() {
     // console.log(ElCarousel)
+    // let _this = this
+    // console.log('$:' + $)
+    // let vv = `function test(){console.log(111);}`
+    // this.html = `<h2 style='color: red' onclick='function test(){console.log(111);}test();'>this is h2</h2>}`
+    // this.getMoreImg()
+    // http.test().then((res) => {})
+    // http.testGet().then((res) => {
+    //   console.log(res)
+    // })
+    this.testGetProperty()
+    console.log('this.$refs', this.$refs['ffff'])
+    console.log('inject name:', this.name)
+    this.name = 'lixpaaa'
+  },
+  beforeUpdate() {
+    // console.log('this.$refs', this.$refs['ffff'])
+  },
+  created() {
+    // console.log('this.$refs', this.$refs['$app'])
     console.log('$:' + $)
     // this.getMoreImg()
     // http.test().then((res) => {})
@@ -73,7 +82,9 @@ export default {
     //   console.log(res)
     // })
     this.test()
->>>>>>> Stashed changes
+    setTimeout(() => {
+      this.bbb = [10, 10, 10]
+    }, 3000)
   },
   methods: {
     async test() {
@@ -99,20 +110,50 @@ export default {
     },
     getData() {
       return new Promise((resolve, reject) => {
-        http.testGet().then((res) => {
-          console.log(res)
-          resolve(true)
-        })
+        http
+          .testGet()
+          .then((res) => {
+            console.log(res)
+            resolve(true)
+          })
+          .catch((err) => {
+            reject(err)
+          })
       })
+    },
+    testGetProperty() {
+      console.log('this.$root', this.$root)
+      console.log('this.$parent', this.$parent)
+      console.log('this.$refs', this.$refs)
+    }
+  },
+  computed: {
+    testsss() {
+      return JSON.stringify(this.bbb)
     }
   },
   watch: {
+    testsss: {
+      handler: function(newV, old) {
+        console.log('newV:', newV)
+      }
+    },
     html: {
       handler: function(newV, old) {
-        newV = newV.replace(/\s+/g, "");
-        console.log(newV);
+        newV = newV.replace(/\s+/g, '')
+        console.log(newV)
       },
       immedite: true
+    }
+  },
+  filters: {
+    formatTime(params) {
+      let date = new Date(params)
+      let year = date.getFullYear()
+      let month = date.getMonth() + 1
+      let day = date.getDate()
+
+      return year + '-' + month + '-' + day
     }
   }
 }

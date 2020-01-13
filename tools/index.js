@@ -63,3 +63,19 @@ function chekType(item) {
   }
 }
 /*****  ***********************************/
+//  获取全局对象
+var getGlobal =
+  function () {
+    if (typeofself !== 'undefined') {
+      return self;
+    }
+    if (typeof window !== 'undefined') {
+      return window;
+    }
+    if (typeof global !== 'undefined') {
+      return global;
+    }
+    throw new Error('unable to locate global object');
+  };
+
+var globals = getGlobal();
