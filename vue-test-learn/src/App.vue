@@ -12,14 +12,20 @@
     <keep-alive>
       <router-view />
     </keep-alive>
-    <my-tabbar :tabbar-iitems="tabbarItems"></my-tabbar>
+    <my-tabbar :tabbar-iitems="tabbarItems" ref="app"></my-tabbar>
   </div>
 </template>
 
 <script>
+<<<<<<< HEAD
 import MyTabbar from "components/myComponents/common/myTabbarPlus/MyTabbar";
 import Vue from "vue";
 import { resolve } from "q";
+=======
+import MyTabbar from 'components/myComponents/common/myTabbarPlus/MyTabbar'
+import Vue from 'vue'
+import { resolve } from 'q'
+>>>>>>> 5a69a612be2944f9b8edf9a9bfd575dd01d0823d
 export default {
   name: "App",
   components: {
@@ -57,17 +63,33 @@ export default {
       testObj: {
         name: "lxp"
       }
-    };
+    }
   },
   created() {
+<<<<<<< HEAD
     new Promise(resolve => {
       Vue.set(this.$options.data().testObj, "age", 18);
       resolve(true);
     }).then(e => console.log("test:", this.$options.data().testObj.age));
+=======
+    this.testObj.addr = '四川'
+    new Promise((resolve) => {
+      Vue.set(this.$options.data().testObj, 'age', 18)
+      resolve(true)
+    }).then((e) => console.log('test:', this.$options.data().testObj.age))
+>>>>>>> 5a69a612be2944f9b8edf9a9bfd575dd01d0823d
 
     // console.log('test:', this.$options.data().testObj);
+  },
+  mounted() {
+    console.log('addr:', this.testObj.addr)
+  },
+  provide() {
+    return {
+      name: 'lixp'
+    }
   }
-};
+}
 </script>
 
 <style scoped>

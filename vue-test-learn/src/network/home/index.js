@@ -21,5 +21,26 @@ export default {
     },
     testGet() {
         return axios.get('/AAA/get')
+    },
+    testUploadFile(data) {
+        return request({
+            url: url.uploadFile,
+            method: 'post',
+            data: data,
+            headers: {
+                contentType: 'application/x-www-form-urlencoded'
+            }
+        })
+    },
+    testDownloadFile(path) {
+        return request({
+            url: url.downloadFile,
+            method: 'get',
+            params: {
+                path
+            },
+            responseType: 'text'
+        })
+
     }
 }

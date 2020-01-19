@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Hcomponent from './HComponent';
+import Hcomponent from './HComponent'
 export default {
   name: 'TestC_1',
   components: {
@@ -21,30 +21,28 @@ export default {
     this.$store
       .dispatch('aModifyName')
       .then((re) => {
-        console.log('已修改', re);
+        console.log('已修改', re)
       })
       .catch((err) => {
-        console.log('已修改', err);
-      });
+        console.log('已修改', err)
+      })
   },
-  mounted() {
-  
-  },
+  mounted() {},
   data() {
-    return {};
+    return {}
   },
   methods: {
     // 修改名字
     setName() {
-      this.$store.commit('modifyName', 'mmmmmm');
+      this.$store.commit('modifyName', 'mmmmmm')
     }
   },
   watch: {
     $route: function(newV, oldV) {
-      console.log('V:', newV.params.name);
+      console.log('V:', newV.params.name)
     }
   }
-};
+}
 </script>
 <style scoped>
 .wrapper {

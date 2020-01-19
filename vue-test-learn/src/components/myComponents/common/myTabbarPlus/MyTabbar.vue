@@ -17,14 +17,22 @@
 </template>
 
 <script>
-import MyTabbarItem from './MyTabbarItem';
+const minx = {
+  created() {
+    console.log('mixin......')
+  }
+}
+
+import MyTabbarItem from './MyTabbarItem'
 export default {
   name: 'MyTabbar',
+  mixins: [minx],
+  inject: ['name'],
   props: {
     tabbarIitems: {
       type: Array,
       default: () => {
-        return [];
+        return []
       }
     }
   },
@@ -32,29 +40,30 @@ export default {
     MyTabbarItem
   },
   created() {
-    console.log('item:', this.tabbarIitems);
+    console.log('item:', this.tabbarIitems)
+    console.log('name:', this.name)
   },
   mounted() {},
   data() {
     return {
       currentPath: this.tabbarIitems[0].path
-    };
+    }
   },
   methods: {
     gteImgAlt(path) {
-      return path.split('.')[0];
+      return path.split('.')[0]
     },
     getSrc(path) {
-      return require(`@/assets/img/${path}`);
+      return require(`@/assets/img/${path}`)
     },
     goViews(path) {
       if (this.currentPath !== path) {
-        this.currentPath = path;
-        this.$router.push(path);
+        this.currentPath = path
+        this.$router.push(path)
       }
     }
   }
-};
+}
 </script>
 <style lang="less" scoped>
 .wrapper {
