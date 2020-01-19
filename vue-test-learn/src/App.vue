@@ -8,7 +8,7 @@
       3. 也可以在全局router配置时，配置linkActiveClass
     -->
     <!-- <router-link :to="{path: '/test/' + param}" tag="button">测试页面</router-link>
-    <router-link :to="{path: '/helloword' }" tag="button">首页</router-link> -->
+    <router-link :to="{path: '/helloword' }" tag="button">首页</router-link>-->
     <keep-alive>
       <router-view />
     </keep-alive>
@@ -17,53 +17,53 @@
 </template>
 
 <script>
-import MyTabbar from 'components/myComponents/common/myTabbarPlus/MyTabbar';
-import Vue from 'vue';
-import { resolve } from 'q';
+import MyTabbar from "components/myComponents/common/myTabbarPlus/MyTabbar";
+import Vue from "vue";
+import { resolve } from "q";
 export default {
-  name: 'App',
+  name: "App",
   components: {
     MyTabbar
   },
   data() {
     return {
-      param: 'testParam',
+      param: "testParam",
       tabbarItems: [
         {
-          imgPath: 'home.svg',
-          imgActivePath: 'home1.svg',
-          text: '首页',
-          path: '/home'
+          imgPath: "home.svg",
+          imgActivePath: "home1.svg",
+          text: "首页",
+          path: "/home"
         },
         {
-          imgPath: 'cart.svg',
-          imgActivePath: 'cart1.svg',
-          text: '购物车',
-          path: '/cart'
+          imgPath: "cart.svg",
+          imgActivePath: "cart1.svg",
+          text: "购物车",
+          path: "/cart"
         },
         {
-          imgPath: 'shop.svg',
-          imgActivePath: 'shop1.svg',
-          text: '商店',
-          path: '/shop'
+          imgPath: "shop.svg",
+          imgActivePath: "shop1.svg",
+          text: "商店",
+          path: "/shop"
         },
         {
-          imgPath: 'user.svg',
-          imgActivePath: 'user1.svg',
-          text: '用户',
-          path: '/user'
+          imgPath: "user.svg",
+          imgActivePath: "user1.svg",
+          text: "用户",
+          path: "/user"
         }
       ],
       testObj: {
-        name: 'lxp'
+        name: "lxp"
       }
     };
   },
   created() {
-    new Promise((resolve) => {
-      Vue.set(this.$options.data().testObj, 'age', 18);
+    new Promise(resolve => {
+      Vue.set(this.$options.data().testObj, "age", 18);
       resolve(true);
-    }).then((e) => console.log('test:', this.$options.data().testObj.age));
+    }).then(e => console.log("test:", this.$options.data().testObj.age));
 
     // console.log('test:', this.$options.data().testObj);
   }
@@ -76,7 +76,7 @@ a {
 }
 
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

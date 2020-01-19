@@ -12,7 +12,7 @@ function pathResolve(dir) {
 module.exports = {
   //  publicpath 相当于vue-cli2的baseUrl
   publicPath: isProduction
-    ? '/'    // 线上环境地址
+    ? 'C:/Users/Administrator/Desktop/project/vue-projects-master/vue-projects-master/mycomponents/dist'    // 线上环境地址
     : '/',
   outputDir: 'dist',
   lintOnSave: !isProduction,  // 保存的时候开启lint检查

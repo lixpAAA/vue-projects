@@ -1,5 +1,5 @@
 const Webpack = require('webpack')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 module.exports = {
 
   entry: {
@@ -18,14 +18,15 @@ module.exports = {
       path: __dirname + '/dll/[name]-manifest.json',
       name: '[name]_library'
     }),
-    new UglifyJsPlugin({
-      uglifyOptions: {
-        compress: {
-          warnings: false
-        }
-      },
-      sourceMap: false,
-      parallel: true
-    }),
+    // new UglifyJsPlugin({
+    //   uglifyOptions: {
+    //     compress: {
+    //       warnings: false
+    //     }
+    //   },
+    //   sourceMap: false,
+    //   parallel: true
+    // }),
   ]
+
 }

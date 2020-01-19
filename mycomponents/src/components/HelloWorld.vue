@@ -4,23 +4,34 @@
     <srollView>
       <h2 slot="header" slot-scope="data">滑动组件{{data.data}}</h2>
     </srollView>
+    <srollView />
+    <RegularPolygon :lineNumber="4" :radius="10" :width="20" :height="20" />
+    <Snow :width="32" :height="40" :grade="3" />
+    <Dot :width="32" :height="40" :radius="10" />
+    <Wave :height="40" :len="10" />
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
-import srollView from '@/components/common/scrollview/scrollView.vue'
-import RegularPolygon from '@/components/common/regularPolygon/regularPolygon.vue'
+import { Component, Prop, Vue } from "vue-property-decorator";
+import srollView from "@/components/common/scrollview/scrollView.vue";
+import RegularPolygon from "@/components/common/regularPolygon/regularPolygon.vue";
+import Snow from "@/components/common/snow/snow.vue";
+import Dot from "@/components/common/dot/dot.vue";
+import Wave from "@/components/common/wave/wave.vue";
 @Component({
   components: {
     srollView,
-    RegularPolygon
+    RegularPolygon,
+    Snow,
+    Dot,
+    Wave
   }
 })
 export default class HelloWorld extends Vue {
-  @Prop() private msg!: string // 定义组件的props:原本为props：{ msg: {type: String, defalt:''}}
+  @Prop() private msg!: string; // 定义组件的props:原本为props：{ msg: {type: String, defalt:''}}
   mounted() {
-    console.log('user', this.$store.state.user)
+    console.log("user", this.$store.state.user);
   } //  其他生命周期函数该咋写咋写
   created() {}
 }

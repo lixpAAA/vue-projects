@@ -10,34 +10,35 @@
 </template>
 
 <script>
-import Vue from 'vue'
-const vm = new Vue()
+import Vue from "vue";
+const vm = new Vue();
 
-import testChild from './myComponents/testComponents/testChild'
-import test from './qwe'
+import testChild from "./myComponents/testComponents/testChild";
+import test from "./qwe";
 
-import { getRouteList as routerUtil } from '../utils/comon'
+import { getRouteList as routerUtil } from "../utils/comon";
 export default {
-  name: 'HelloWorld',
+  name: "HelloWorld",
   components: {
     testChild,
     test
   },
   props: {
-    msg1: 'Welcome to Your Vue.js App 11'
+    msg1: "Welcome to Your Vue.js App 11"
   },
   provide: {
-    user: { name: 'lxp' }
+    user: { name: "lxp" }
   },
   data() {
     return {
-      msg: 'Welcome to Your Vue.js App',
+      msg: "Welcome to Your Vue.js App",
       list: [1, 12, 1]
-    }
+    };
   },
   created() {
-    vm.$emit('change', 123) /// 全局发出事件消息
-    routerUtil()
+    vm.$emit("change", 123); /// 全局发出事件消息
+    routerUtil();
+    console.log("父组件里的test方法");
     // console.log('this:', this.test());
     // this.$http.http('/get').then((res) => {
     //   console.log('默认方式res:', res);
@@ -48,28 +49,43 @@ export default {
   },
   methods: {
     test() {
-      console.log('父组件里的test方法')
-      this.msg = '改变msg，说明$attr获取的数据是响应式的'
+      console.log("父组件里的test方法");
+      this.msg = "改变msg，说明$attr获取的数据是响应式的";
       // this.user.name = '改变后lxp';
     }
   },
   directives: {
     for1: {
       bind: function(el, binding, vnode) {
-        let datas = binding.value
-        let str = ''
+        let datas = binding.value;
+        let str = "";
         // var s = JSON.stringify;
-        if (toString.call(datas) === '[object Array]') {
+        if (toString.call(datas) === "[object Array]") {
           datas.map((item, index) => {
-            str += `<div key='${index}'>${item}</div>`
-          })
+            str += `<div key='${index}'>${item}</div>`;
+          });
         }
-        el.innerHTML = str
+        el.innerHTML = str;
       },
       inserted: function(el) {}
     }
+  },
+  beforeRouteEnter: function(to, form, next) {
+    console.log("to:", to);
+    console.log("form:", form);
+    next();
+  },
+  beforeRouteUpdate: function(to, form, next) {
+    console.log("to:", to);
+    console.log("form:", form);
+    next();
+  },
+  beforeRouteLeave: function(to, form, next) {
+    console.log("to:", to);
+    console.log("form:", form);
+    next();
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

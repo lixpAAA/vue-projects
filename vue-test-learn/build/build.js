@@ -3,6 +3,8 @@ require('./check-versions')()
 
 process.env.NODE_ENV = 'production'
 
+
+const webpackDllconfig = require('../webpack.dll11')
 const ora = require('ora')
 const rm = require('rimraf')
 const path = require('path')
@@ -18,18 +20,11 @@ spinner.start()
 rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
   if (err) throw err
   new Promise((resolve, reject) => {
-    webpack(webpackDllConfig, (err, stats) => {
-      if (err) throw err
-      process.stdout.write(stats.toString({
-        colors: true,
-        modules: false,
-        children: false, // If you are using ts-loader, setting this to true will make TypeScript errors show up during build.
-        chunks: false,
-        chunkModules: false
-      }) + '\n\n')
+    webpack(webpackDllconfig, () => {
       resolve()
     })
-  }).then(res => {
+  }).then((res) => {
+    console.log(res)
     webpack(webpackConfig, (err, stats) => {
       spinner.stop()
       if (err) throw err
@@ -53,8 +48,4 @@ rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
       ))
     })
   })
-
-
-
-
 })

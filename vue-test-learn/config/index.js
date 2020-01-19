@@ -50,7 +50,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: 'C:/Users/Administrator/Desktop/project/vue-projects-master/vue-projects-master/vue-test-learn/dist',
 
     /**
      * Source Maps
