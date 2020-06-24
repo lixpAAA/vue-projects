@@ -2,6 +2,33 @@
 
 <script>
 import { debounce, deepClone } from "@/utils/index";
+const fn = debounce(({ val, data, keyColumn }) => {
+  const temp = JSON.parse(JSON.stringify(data));
+  let originData = val
+    ? temp.filter(item => {
+        return ((item[keyColumn] || "") + "")
+          .toUpperCase()
+          .includes(val.toUpperCase());
+      })
+    : temp;
+  return originData;
+}, 500);
+// const fn = debounce(({ val, data }) => {
+//   const temp = JSON.parse(JSON.stringify(_this.data));
+//   _this.originData = val
+//     ? temp
+//         .filter(item => {
+//           return ((item[_this.keyColumn] || "") + "")
+//             .toUpperCase()
+//             .includes(val.toUpperCase());
+//         })
+//         .slice(
+//           _this.pageSizeInternal * (_this.curentPageInternal - 1),
+//           _this.pageSizeInternal * _this.curentPageInternal
+//         )
+//     : temp;
+//   _this.totalInternal = _this.originData.length;
+// }, 1000);
 export default {
   name: "l-table",
   props: {
@@ -101,22 +128,6 @@ export default {
   methods: {
     renderSearch(h) {
       const _this = this;
-      const fn = debounce(val => {
-        const temp = JSON.parse(JSON.stringify(_this.data));
-        _this.originData = val
-          ? temp
-              .filter(item => {
-                return ((item[_this.keyColumn] || "") + "")
-                  .toUpperCase()
-                  .includes(val.toUpperCase());
-              })
-              .slice(
-                _this.pageSizeInternal * (_this.curentPageInternal - 1),
-                _this.pageSizeInternal * _this.curentPageInternal
-              )
-          : temp;
-        _this.totalInternal = _this.originData.length;
-      }, 1000);
       return (
         <el-row>
           <el-col span={8}>
@@ -126,7 +137,17 @@ export default {
                 on: {
                   input: val => {
                     _this.inputContent = val;
-                    fn(val.trim());
+                    fn({
+                      val: val.trim(),
+                      data: _this.data,
+                      keyColumn: _this.keyColumn
+                    }).then(res => {
+                      _this.originData = res.slice(
+                        _this.pageSizeInternal * (_this.curentPageInternal - 1),
+                        _this.pageSizeInternal * _this.curentPageInternal
+                      );
+                      _this.totalInternal = _this.originData.length;
+                    });
                   }
                 }
               }}
