@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h5>{{ msg }}</h5>
-    <component :is="srollView"></component>
+    <!-- <component :is="LTable"></component> -->
     <!-- <srollView>
       <h2 slot="header" slot-scope="data">滑动组件{{data.data}}</h2>
     </srollView>
@@ -12,7 +12,14 @@
     <Wave :height="40" :len="10" />
     </srollView>-->
     <h3>{{time|formatTime('mamm')}}</h3>
-    <inputV @input="getInputInfo" :messge.sync="msg" />
+    <terminal></terminal>
+    <l-table :data="tableData" :columns="columns" key-column="date"></l-table>
+    <!-- <inputV @input="getInputInfo" :messge.sync="msg" /> -->
+    <!-- <el-dialog title="提示" :visible.sync="visible" width="80%">
+      <span>这是一段信息</span>
+      <el-sliderp v-model="value1" show-input :max="64" :min="-50" :bar-disabled="false"></el-sliderp>
+    </el-dialog>-->
+    <button @click="clickTest('1', '2', '3')">fsfsdfsdf</button>
   </div>
 </template>
 
@@ -23,15 +30,21 @@ import RegularPolygon from "@/components/common/regularPolygon/regularPolygon.vu
 import Snow from "@/components/common/snow/snow.vue";
 import Dot from "@/components/common/dot/dot.vue";
 import Wave from "@/components/common/wave/wave.vue";
+import LTable from "@/components/common/table/index.vue";
+import elSliderp from "@/components/common/slider3";
+import terminal from "@/components/content/terminal";
 
-import inputV from "@/components/content/test.vue";
+// import inputV from "@/components/content/test.vue";
 @Component({
   components: {
     srollView,
     RegularPolygon,
     Snow,
     Dot,
-    Wave
+    Wave,
+    LTable,
+    terminal,
+    elSliderp
   },
   filters: {
     formatTime(params: Date, type: string) {
@@ -52,15 +65,66 @@ import inputV from "@/components/content/test.vue";
   }
 })
 export default class HelloWorld extends Vue {
+  autoSize = { minRows: 8, maxRows: 10 };
+  input = "{'ds': 'dasda', 'da': ['dasda']}";
+  visible = true;
+  value1: number = 0;
   msg: string = ""; // 定义组件的props:原本为props：{ msg: {type: String, defalt:''}}
-  srollView: string = "srollView";
+  srollView: string = "LTable";
   time: Date = new Date();
+
+  tableData: Array<object> = [
+    {
+      date: 1,
+      name: "lsxp"
+    },
+    {
+      date: 2,
+      name: "lxp"
+    },
+    {
+      date: 3,
+      name: "lxp"
+    },
+    {
+      date: 4,
+      name: "lxp"
+    },
+    {
+      date: 5,
+      name: "lxp"
+    },
+    {
+      date: 6,
+      name: "lxpAA"
+    }
+  ];
+  columns: Array<object> = [
+    {
+      prop: "date",
+      label: "日期"
+    },
+    {
+      prop: "name",
+      label: "姓名"
+    }
+  ];
   mounted() {
+    try {
+      setTimeout(() => {
+        this.msg = "45457777878";
+      });
+    } catch (e) {}
     console.log("user", this.$store.state.user);
   } //  其他生命周期函数该咋写咋写
-  created() {}
+  created() {
+    Object.freeze(this.msg);
+  }
   getInputInfo(e: any) {
     this.msg = e;
+  }
+  clickTest(a: string, b: string, c: string) {
+    console.log("c", c);
   }
 }
 </script>

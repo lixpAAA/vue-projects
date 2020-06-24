@@ -7,13 +7,13 @@ const isProduction = process.env.NODE_ENV === 'production'
 function pathResolve(dir) {
   return path.resolve(__dirname, dir)
 }
-
+const name = require('./package.json').name
 
 module.exports = {
   //  publicpath 相当于vue-cli2的baseUrl
   publicPath: isProduction
     ? 'C:/Users/Administrator/Desktop/project/vue-projects-master/vue-projects-master/mycomponents/dist'    // 线上环境地址
-    : '/',
+    : '//localhost:8081',
   outputDir: 'dist',
   lintOnSave: !isProduction,  // 保存的时候开启lint检查
   runtimeCompiler: false, // vue实例可以使用<template> 选项
@@ -27,26 +27,31 @@ module.exports = {
         target: '<url>',
         ws: true,
         changeOrigin: true
-      },
+      }
+    },
+    headers: {
+      'Access-Control-Allow-Origin': '*',
     }
   },
-  css: {
-    extract: true,
-    // 错误追踪  生产环境可以关掉， 会增加代码打包时间
-    sourceMap: false,
-    //css预处理配置
-    loaderOptions: {
-      // less: {
-      //   data: `@import "@/assets/common/index.scss"`
-      // }
-    },
-    // 是否启用css
-    modules: true
-  },
+
+  //   css: {
+  //     extract: true,
+  //     // 错误追踪  生产环境可以关掉， 会增加代码打包时间
+  //     sourceMap: false,
+  //     //css预处理配置
+  //     loaderOptions: {
+  //       // less: {
+  //       //   data: `@import "@/assets/common/index.scss"`
+  //       // }
+  //     },
+  //   // 是否启用css
+  //   // modules: true
+  // },
   chainWebpack: config => {
     // config.resolve.alias.set('@', pathResolve('./src'))
     //   .set('@components', pathResolve('@/components'))
-    console.log(config.resolve.extensions.values())
+    // console.log(config.resolve.extensions.values())
+
     if (isProduction) {
       //  生产环境删除预加载
       config.plugins.delete('preload')
@@ -58,26 +63,45 @@ module.exports = {
       })
     }
   },
-  configureWebpack: config => {
-    if (isProduction) {
-      config.plugins.push(
-        new UglifyWebpackPugin({
-          /// 删除console debugger
-          uglifyOptions: {
-            compress: {
-              drop_debugger: true,
-              drop_console: true
-            }
-          },
-          sourceMap: false,
-          //  使用多进程并行来提高构建速度
-          parallel: true
-        })
-      )
-    } else {
-      //  测试环境
-    }
+  // 自定义webpack配置
+  configureWebpack: {
+    resolve: {
+      alias: {
+        '@': pathResolve('src'),
+      },
+    },
+    output: {
+      // 把子应用打包成 umd 库格式
+      library: `${name}-[name]`,
+      libraryTarget: 'umd',
+      jsonpFunction: `webpackJsonp_${name}`,
+    },
   },
+  // configureWebpack: config => {
+  //   // config.output = {
+  //   //   library: `${name}-[name]`,
+  //   //   libraryTarget: 'umd',
+  //   //   jsonpFunction: `webpackJsonp_${name}`,
+  //   // }
+  //   // if (isProduction) {
+  //   //   config.plugins.push(
+  //   //     new UglifyWebpackPugin({
+  //   //       /// 删除console debugger
+  //   //       uglifyOptions: {
+  //   //         compress: {
+  //   //           drop_debugger: true,
+  //   //           drop_console: true
+  //   //         }
+  //   //       },
+  //   //       sourceMap: false,
+  //   //       //  使用多进程并行来提高构建速度
+  //   //       parallel: true
+  //   //     })
+  //   //   )
+  //   // } else {
+  //   //   //  测试环境
+  //   // }
+  // },
   //  生产环境
   productionSourceMap: false,
   // 默认并发数('os').cpus().length -1

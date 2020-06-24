@@ -5,11 +5,11 @@
   "member-access": {
     "options": [
       "check-accessor",
-      "check-constructor",
-      "check-parameter-property"
+      "check-constructor"
+      // "check-parameter-property"
     ]
   },
-  "prefer-readonly": false,
+  "prefer-readonly": false
   // "extends": [
   //   "tslint:recommended"
   // ],
